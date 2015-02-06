@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="hrac1_pozadi">#222</color>
+    <color name="hrac2_pozadi">#555</color>
+    <color name="kostka">#055</color>
+    <color name="zarovkaon">#FF0</color>
+    <color name="text">#FFF</color>
+    <color name="zarovkaoff">#000</color>
+</resources>

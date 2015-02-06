@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Magic life and poison counter</string>
+    <string name="plus">+</string>
+    <string name="minus">-</string>
+    <string name="novy">New</string>
+    <string name="rand">Random</string>
+    <string name="nova_hra">New</string>
+    <string name="konec">Konec</string>
+    <string name="kostka">Random</string>
+    <string name="backon">Backlight on</string>
+    <string name="backoff">Backlight off</string>
+    <string name="life">Life</string>
+    <string name="poison">Poison</string>
+    <string name="min">Min</string>
+    <string name="max">Max</string>
+    <string name="vysledek">Rand</string>
+    <string name="title_activity_magic">Magic</string>
+
+</resources>

@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <!-- Hrac 1 -->
+    <RelativeLayout
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:id="@+id/hrac1"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:orientation="horizontal"
+            android:id="@+id/hrac1_vrch">
+
+            <EditText
+                android:id="@+id/jmeno1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="text"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/hrac1_vrch"
+            android:background="@color/hrac1_pozadi"
+            >
+
+            <!-- zivoty 1 cisla -->
+
+            <LinearLayout
+                android:id="@+id/zivoty_cisla1"
+                android:layout_width="100dp"
+                android:layout_height="120dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:text="@string/life"
+                    android:textColor="@color/text"
+                    android:textSize="18sp" />
+
+
+                <TextView
+                    android:id="@+id/zivoty1"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:textColor="@color/text"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textSize="40sp" />
+
+                <TextView
+                    android:id="@+id/zivoty_delta1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/text"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textSize="20sp" />
+            </LinearLayout>
+            <!-- zivoty buttony -->
+
+            <LinearLayout
+                android:id="@+id/zivoty_buttony1"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_toRightOf="@id/zivoty_cisla1"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <Button
+                    android:layout_width="70dp"
+                    android:layout_height="57dp"
+                    android:gravity="bottom|center_horizontal"
+                    android:onClick="buttonPlusLife1"
+                    android:paddingBottom="5dp"
+                    android:text="@string/plus"
+                    android:textSize="40sp" />
+
+                <Button
+                    android:layout_width="70dp"
+                    android:layout_height="57dp"
+                    android:gravity="bottom|center_horizontal"
+                    android:onClick="buttonMinusLife1"
+                    android:paddingBottom="8dp"
+                    android:text="@string/minus"
+                    android:textSize="40sp" />
+            </LinearLayout>
+
+            <!-- poison countery cisla -->
+
+            <LinearLayout
+                android:id="@+id/poison_cisla1"
+                android:layout_width="100dp"
+                android:layout_height="120dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_below="@id/zivoty_buttony1"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:text="@string/poison"
+                    android:textColor="@color/text"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/poisony1"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textColor="@color/text"
+                    android:textSize="40sp" />
+
+                <TextView
+                    android:id="@+id/poisony_delta1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textColor="@color/text"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <!-- poison butony -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:layout_toRightOf="@id/zivoty_cisla1"
+                android:layout_below="@id/zivoty_cisla1">
+
+                <Button
+                    android:layout_width="70dp"
+                    android:layout_height="57dp"
+                    android:gravity="bottom|center_horizontal"
+                    android:onClick="buttonPlusPoison1"
+                    android:paddingBottom="5dp"
+                    android:text="@string/plus"
+                    android:textSize="40sp" />
+
+                <Button
+                    android:layout_width="70dp"
+                    android:layout_height="57dp"
+                    android:gravity="bottom|center_horizontal"
+                    android:onClick="buttonMinusPoison1"
+                    android:paddingBottom="8dp"
+                    android:text="@string/minus"
+                    android:textSize="40sp" />
+            </LinearLayout>
+
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <!-- Hrac 2 -->
+    <RelativeLayout
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@id/hrac1"
+        android:id="@+id/hrac2">
+
+        <LinearLayout
+            android:id="@+id/hrac2_vrch"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/jmeno2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="text"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/hrac2_vrch"
+            android:background="@color/hrac2_pozadi"
+        >
+
+            <!-- zivoty 2 cisla-->
+
+            <LinearLayout
+                android:id="@+id/zivoty_cisla2"
+                android:layout_width="100dp"
+                android:layout_height="120dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:text="@string/life"
+                    android:textColor="@color/text"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/zivoty2"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textColor="@color/text"
+                    android:textSize="40sp" />
+
+                <TextView
+                    android:id="@+id/zivoty_delta2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textColor="@color/text"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <!-- zivoty 2 buttony -->
+
+            <LinearLayout
+                android:id="@+id/zivoty_buttony2"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_toRightOf="@id/zivoty_cisla2"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <Button
+                    android:layout_width="70dp"
+                    android:layout_height="57dp"
+                    android:gravity="bottom|center_horizontal"
+                    android:onClick="buttonPlusLife2"
+                    android:paddingBottom="5dp"
+                    android:text="@string/plus"
+                    android:textSize="40sp" />
+
+                <Button
+                    android:layout_width="70dp"
+                    android:layout_height="57dp"
+                    android:gravity="bottom|center_horizontal"
+                    android:onClick="buttonMinusLife2"
+                    android:paddingBottom="8dp"
+                    android:text="@string/minus"
+                    android:textSize="40sp" />
+            </LinearLayout>
+
+            <!-- poison countery 2 cisla-->
+
+            <LinearLayout
+                android:id="@+id/poison_cisla2"
+                android:layout_width="100dp"
+                android:layout_height="120dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_below="@id/zivoty_buttony2"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:text="@string/poison"
+                    android:textColor="@color/text"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/poisony2"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textColor="@color/text"
+                    android:textSize="40sp" />
+
+                <TextView
+                    android:id="@+id/poisony_delta2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textColor="@color/text"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <!-- posion butony -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:layout_toRightOf="@id/zivoty_cisla2"
+                android:layout_below="@id/zivoty_cisla2">
+
+                <Button
+                    android:layout_width="70dp"
+                    android:layout_height="57dp"
+                    android:gravity="bottom|center_horizontal"
+                    android:onClick="buttonPlusPoison2"
+                    android:paddingBottom="5dp"
+                    android:text="@string/plus"
+                    android:textSize="40sp" />
+
+                <Button
+                    android:layout_width="70dp"
+                    android:layout_height="57dp"
+                    android:gravity="bottom|center_horizontal"
+                    android:onClick="buttonMinusPoison2"
+                    android:paddingBottom="8dp"
+                    android:text="@string/minus"
+                    android:textSize="40sp" />
+            </LinearLayout>
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <!-- kostka -->
+    <RelativeLayout
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@id/hrac2"
+        android:id="@+id/kostka">
+
+            <!-- kostka od -->
+            <LinearLayout
+                android:id="@+id/kostka_od"
+                android:layout_width="65dp"
+                android:layout_height="100dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:text="@string/min"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/random_od"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:inputType="number"
+                    android:textSize="30sp" />
+            </LinearLayout>
+
+            <!-- kostka do -->
+            <LinearLayout
+                android:layout_toRightOf="@id/kostka_od"
+                android:id="@+id/kostka_do"
+                android:layout_width="65dp"
+                android:layout_height="100dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:text="@string/max"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/random_do"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:inputType="number"
+                    android:textSize="30sp" />
+            </LinearLayout>
+
+            <!-- kostka vysledek -->
+
+            <LinearLayout
+                android:id="@+id/kostka_vysledek"
+                android:layout_width="65dp"
+                android:layout_height="100dp"
+                android:orientation="vertical"
+                android:layout_below="@id/kostka_do">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:text="@string/vysledek"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/random_vysledek"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="number"
+                    android:state_enabled="false"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:focusable="false"
+                    android:textSize="30sp" />
+            </LinearLayout>
+        <!-- kostka button + zarovka -->
+
+        <LinearLayout
+            android:id="@+id/kostka_button"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:orientation="vertical"
+            android:layout_below="@id/kostka_vysledek">
+
+            <View
+                android:id="@+id/zarovka1"
+                android:background="@color/zarovkaoff"
+                android:layout_width="25dp"
+                android:layout_height="25dp" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:onClick="buttonRand"
+                android:text="@string/rand"
+                android:gravity="center_vertical|center_horizontal"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+
+    </RelativeLayout>
+</RelativeLayout>
