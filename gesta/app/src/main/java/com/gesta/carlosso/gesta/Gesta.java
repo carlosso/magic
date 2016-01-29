@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.support.v4.view.GestureDetectorCompat;
 import android.view.MotionEvent;
 import android.util.Log;
+import android.widget.TextView;
 
 public class Gesta extends AppCompatActivity implements
         GestureDetector.OnGestureListener,
@@ -19,6 +20,7 @@ public class Gesta extends AppCompatActivity implements
 
     private static final String DEBUG_TAG = "Gestures";
     private GestureDetectorCompat mDetector;
+    private Integer cislo=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,16 @@ public class Gesta extends AppCompatActivity implements
         // Set the gesture detector as the double tap
         // listener.
         mDetector.setOnDoubleTapListener(this);
+
+        View myView = findViewById(R.id.textView1);
+        myView.setOnTouchListener(new View.OnTouchListener() {
+            public boolean onTouch(View v, MotionEvent event) {
+                // ... Respond to touch events
+                Log.d(DEBUG_TAG, "onTouch-muj: " + event.toString());
+
+                return true;
+            }
+        });
     }
 
     @Override
@@ -73,55 +85,74 @@ public class Gesta extends AppCompatActivity implements
 
     @Override
     public boolean onDown(MotionEvent event) {
-        Log.d(DEBUG_TAG,"onDown: " + event.toString());
+        Log.d(DEBUG_TAG, "onDown: " + event.toString());
         return true;
     }
 
     @Override
     public boolean onFling(MotionEvent event1, MotionEvent event2,
                            float velocityX, float velocityY) {
-        Log.d(DEBUG_TAG, "onFling: " + event1.toString()+event2.toString());
+        Log.d(DEBUG_TAG, "onFling: " + event1.toString()+event2.toString()+"velX:"+String.valueOf(velocityX)+" velY:"+String.valueOf(velocityY));
+        if(velocityY<10)
+        {
+            Zvys();
+        }
+        if(velocityY>10)
+        {
+            Sniz();
+        }
         return true;
     }
 
     @Override
     public void onLongPress(MotionEvent event) {
-        Log.d(DEBUG_TAG, "onLongPress: " + event.toString());
+        //Log.d(DEBUG_TAG, "onLongPress: " + event.toString());
     }
 
     @Override
     public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX,
                             float distanceY) {
-        Log.d(DEBUG_TAG, "onScroll: " + e1.toString()+e2.toString());
+        //Log.d(DEBUG_TAG, "onScroll: " + e1.toString()+e2.toString());
         return true;
     }
 
     @Override
     public void onShowPress(MotionEvent event) {
-        Log.d(DEBUG_TAG, "onShowPress: " + event.toString());
+        //Log.d(DEBUG_TAG, "onShowPress: " + event.toString());
     }
 
     @Override
     public boolean onSingleTapUp(MotionEvent event) {
-        Log.d(DEBUG_TAG, "onSingleTapUp: " + event.toString());
+        //Log.d(DEBUG_TAG, "onSingleTapUp: " + event.toString());
         return true;
     }
 
     @Override
     public boolean onDoubleTap(MotionEvent event) {
-        Log.d(DEBUG_TAG, "onDoubleTap: " + event.toString());
+        //Log.d(DEBUG_TAG, "onDoubleTap: " + event.toString());
         return true;
     }
 
     @Override
     public boolean onDoubleTapEvent(MotionEvent event) {
-        Log.d(DEBUG_TAG, "onDoubleTapEvent: " + event.toString());
+        //Log.d(DEBUG_TAG, "onDoubleTapEvent: " + event.toString());
         return true;
     }
 
     @Override
     public boolean onSingleTapConfirmed(MotionEvent event) {
-        Log.d(DEBUG_TAG, "onSingleTapConfirmed: " + event.toString());
+        //Log.d(DEBUG_TAG, "onSingleTapConfirmed: " + event.toString());
         return true;
+    }
+
+    public void Zvys()
+    {
+        cislo++;
+        ((TextView) findViewById(R.id.textView1)).setText(cislo.toString());
+    }
+    public void Sniz()
+    {
+        cislo--;
+        ((TextView) findViewById(R.id.textView1)).setText(cislo.toString());
     }
 }
