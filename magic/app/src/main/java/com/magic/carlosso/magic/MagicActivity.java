@@ -125,24 +125,34 @@ public class MagicActivity extends Activity {
     }
 
     public void buttonPlusLife1(View button) {
+        plusLife1();
+    }
+    public void plusLife1()
+    {
         zivotyHrac1++;
         deltaZivoty1++;
         ((TextView) findViewById(R.id.zivoty1)).setText(zivotyHrac1.toString());
         VykresliDelty();
         ulohaTimeru.setCasPosledniho();
-
     }
 
     public void buttonMinusLife1(View button) {
+        minusLife1();
+    }
+    public void minusLife1()
+    {
         zivotyHrac1--;
         deltaZivoty1--;
         ((TextView) findViewById(R.id.zivoty1)).setText(zivotyHrac1.toString());
         VykresliDelty();
         ulohaTimeru.setCasPosledniho();
-
     }
 
     public void buttonPlusLife2(View button) {
+       plusLife2();
+    }
+    public void plusLife2()
+    {
         zivotyHrac2++;
         deltaZivoty2++;
         ((TextView) findViewById(R.id.zivoty2)).setText(zivotyHrac2.toString());
@@ -152,17 +162,23 @@ public class MagicActivity extends Activity {
     }
 
     public void buttonMinusLife2(View button) {
+       minusLife2();
+    }
+    public void minusLife2(){
         zivotyHrac2--;
         deltaZivoty2--;
         ((TextView) findViewById(R.id.zivoty2)).setText(zivotyHrac2.toString());
         VykresliDelty();
         ulohaTimeru.setCasPosledniho();
-
     }
 
     // -----------------poisony-------------------------
 
     public void buttonPlusPoison1(View button) {
+      plusPoison1();
+    }
+    public void plusPoison1()
+    {
         poisonyHrac1++;
         deltaPoisony1++;
         ((TextView) findViewById(R.id.poisony1)).setText(poisonyHrac1
@@ -173,6 +189,9 @@ public class MagicActivity extends Activity {
     }
 
     public void buttonMinusPoison1(View button) {
+       minusPoison1();
+    }
+    public void minusPoison1(){
         poisonyHrac1--;
         deltaPoisony1--;
         ((TextView) findViewById(R.id.poisony1)).setText(poisonyHrac1
@@ -183,6 +202,9 @@ public class MagicActivity extends Activity {
     }
 
     public void buttonPlusPoison2(View button) {
+      plusPoison2();
+    }
+    public void plusPoison2(){
         poisonyHrac2++;
         deltaPoisony2++;
         ((TextView) findViewById(R.id.poisony2)).setText(poisonyHrac2
@@ -193,6 +215,9 @@ public class MagicActivity extends Activity {
     }
 
     public void buttonMinusPoison2(View button) {
+      minusPoison2();
+    }
+    public void minusPoison2(){
         poisonyHrac2--;
         deltaPoisony2--;
         ((TextView) findViewById(R.id.poisony2)).setText(poisonyHrac2
