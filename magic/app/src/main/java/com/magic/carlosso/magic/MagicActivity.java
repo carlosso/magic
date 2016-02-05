@@ -9,32 +9,53 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.EditText;
 import android.widget.Toast;
 
 public class MagicActivity extends Activity {
-    /** Called when the activity is first created. */
-    private Integer zivotyHrac1;
-    private Integer zivotyHrac2;
-    private Integer poisonyHrac1;
-    private Integer poisonyHrac2;
-    private Integer deltaZivoty1;
-    private Integer deltaZivoty2;
-    private Integer deltaPoisony1;
-    private Integer deltaPoisony2;
-
+    protected static final int REQUEST_ADD_BOOK = 0;
     Integer randOd;
     Integer randDo;
     String jmeno1;
     String jmeno2;
     Boolean lightOn;
     MojeTimerTask ulohaTimeru;
+    private static final String DEBUG_TAG = "carlosso";
+    /**
+     * Called when the activity is first created.
+     */
+    private Integer zivotyHrac1;
+    private Integer zivotyHrac2;
+    private Integer poisonyHrac1;
+    private Integer poisonyHrac2;
+    DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            switch (which) {
+                case DialogInterface.BUTTON_POSITIVE:
+                    NulujHru();
+                    break;
+
+                case DialogInterface.BUTTON_NEGATIVE:
+                    // No button clicked
+                    break;
+            }
+        }
+    };
+    private Integer deltaZivoty1;
+    private Integer deltaZivoty2;
+    private Integer deltaPoisony1;
+    private Integer deltaPoisony2;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -64,8 +85,7 @@ public class MagicActivity extends Activity {
         randOd = settings.getInt("randOd", 1);
         randDo = settings.getInt("randDo", 6);
         lightOn = settings.getBoolean("light", false);
-        if(lightOn)
-        {
+        if (lightOn) {
             ZapniSvetlo();
         }
 
@@ -77,10 +97,52 @@ public class MagicActivity extends Activity {
         casovac.schedule(ulohaTimeru, Constants.SMAZAT_KOSTKU_ZA_MS,
                 Constants.SMAZAT_KOSTKU_ZA_MS);
 
+        //----dotyky-----
+        LinearLayout zivoty1;
+        zivoty1 = (LinearLayout) findViewById(R.id.dotyk_zivot1);
+        final GestureDetector mujGestureDetectorZivoty1 = new GestureDetector(new MyGestureListenerZivoty1());
+        zivoty1.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(final View view, final MotionEvent event) {
+                mujGestureDetectorZivoty1.onTouchEvent(event);
+                return true;
+            }
+        });
+
+        LinearLayout zivoty2;
+        zivoty2 = (LinearLayout) findViewById(R.id.dotyk_zivot2);
+        final GestureDetector mujGestureDetectorZivoty2 = new GestureDetector(new MyGestureListenerZivoty2());
+        zivoty2.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(final View view, final MotionEvent event) {
+                mujGestureDetectorZivoty2.onTouchEvent(event);
+                return true;
+            }
+        });
+
+        LinearLayout poisony1;
+        poisony1 = (LinearLayout) findViewById(R.id.dotyk_poison1);
+        final GestureDetector mujGestureDetectorPoisony1 = new GestureDetector(new MyGestureListenerPoisony1());
+        poisony1.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(final View view, final MotionEvent event) {
+                mujGestureDetectorPoisony1.onTouchEvent(event);
+                return true;
+            }
+        });
+
+        LinearLayout poisony2;
+        poisony2 = (LinearLayout) findViewById(R.id.dotyk_poison2);
+        final GestureDetector mujGestureDetectorPoisony2 = new GestureDetector(new MyGestureListenerPoisony2());
+        poisony2.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(final View view, final MotionEvent event) {
+                mujGestureDetectorPoisony2.onTouchEvent(event);
+                return true;
+            }
+        });
+
     }
-
-    protected static final int REQUEST_ADD_BOOK = 0;
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -127,8 +189,8 @@ public class MagicActivity extends Activity {
     public void buttonPlusLife1(View button) {
         plusLife1();
     }
-    public void plusLife1()
-    {
+
+    public void plusLife1() {
         zivotyHrac1++;
         deltaZivoty1++;
         ((TextView) findViewById(R.id.zivoty1)).setText(zivotyHrac1.toString());
@@ -139,8 +201,8 @@ public class MagicActivity extends Activity {
     public void buttonMinusLife1(View button) {
         minusLife1();
     }
-    public void minusLife1()
-    {
+
+    public void minusLife1() {
         zivotyHrac1--;
         deltaZivoty1--;
         ((TextView) findViewById(R.id.zivoty1)).setText(zivotyHrac1.toString());
@@ -149,10 +211,10 @@ public class MagicActivity extends Activity {
     }
 
     public void buttonPlusLife2(View button) {
-       plusLife2();
+        plusLife2();
     }
-    public void plusLife2()
-    {
+
+    public void plusLife2() {
         zivotyHrac2++;
         deltaZivoty2++;
         ((TextView) findViewById(R.id.zivoty2)).setText(zivotyHrac2.toString());
@@ -162,9 +224,43 @@ public class MagicActivity extends Activity {
     }
 
     public void buttonMinusLife2(View button) {
-       minusLife2();
+        minusLife2();
     }
-    public void minusLife2(){
+
+    private class MyGestureListenerZivoty1 extends GestureDetector.SimpleOnGestureListener {
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+            Log.d(DEBUG_TAG, "onTouch-muj1: " + e1.toString());
+            if(velocityY<10)
+            {
+                plusLife1();
+            }
+            if(velocityY>10)
+            {
+                minusLife1();
+            }
+            return false;
+        }
+    }
+    private class MyGestureListenerZivoty2 extends GestureDetector.SimpleOnGestureListener {
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+            Log.d(DEBUG_TAG, "onTouch-muj2: " + e1.toString());
+            if(velocityY<10)
+            {
+                plusLife2();
+            }
+            if(velocityY>10)
+            {
+                minusLife2();
+            }
+            return false;
+        }
+    }
+
+    // -----------------poisony-------------------------
+
+    public void minusLife2() {
         zivotyHrac2--;
         deltaZivoty2--;
         ((TextView) findViewById(R.id.zivoty2)).setText(zivotyHrac2.toString());
@@ -172,13 +268,11 @@ public class MagicActivity extends Activity {
         ulohaTimeru.setCasPosledniho();
     }
 
-    // -----------------poisony-------------------------
-
     public void buttonPlusPoison1(View button) {
-      plusPoison1();
+        plusPoison1();
     }
-    public void plusPoison1()
-    {
+
+    public void plusPoison1() {
         poisonyHrac1++;
         deltaPoisony1++;
         ((TextView) findViewById(R.id.poisony1)).setText(poisonyHrac1
@@ -189,9 +283,10 @@ public class MagicActivity extends Activity {
     }
 
     public void buttonMinusPoison1(View button) {
-       minusPoison1();
+        minusPoison1();
     }
-    public void minusPoison1(){
+
+    public void minusPoison1() {
         poisonyHrac1--;
         deltaPoisony1--;
         ((TextView) findViewById(R.id.poisony1)).setText(poisonyHrac1
@@ -202,9 +297,10 @@ public class MagicActivity extends Activity {
     }
 
     public void buttonPlusPoison2(View button) {
-      plusPoison2();
+        plusPoison2();
     }
-    public void plusPoison2(){
+
+    public void plusPoison2() {
         poisonyHrac2++;
         deltaPoisony2++;
         ((TextView) findViewById(R.id.poisony2)).setText(poisonyHrac2
@@ -215,9 +311,10 @@ public class MagicActivity extends Activity {
     }
 
     public void buttonMinusPoison2(View button) {
-      minusPoison2();
+        minusPoison2();
     }
-    public void minusPoison2(){
+
+    public void minusPoison2() {
         poisonyHrac2--;
         deltaPoisony2--;
         ((TextView) findViewById(R.id.poisony2)).setText(poisonyHrac2
@@ -227,6 +324,39 @@ public class MagicActivity extends Activity {
 
     }
 
+    private class MyGestureListenerPoisony1 extends GestureDetector.SimpleOnGestureListener {
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+            Log.d(DEBUG_TAG, "onTouch-muj3: " + e1.toString());
+            if(velocityY<10)
+            {
+                plusPoison1();
+            }
+            if(velocityY>10)
+            {
+                minusPoison1();
+            }
+            return false;
+        }
+    }
+    private class MyGestureListenerPoisony2 extends GestureDetector.SimpleOnGestureListener {
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+            Log.d(DEBUG_TAG, "onTouch-muj4: " + e1.toString());
+            if(velocityY<10)
+            {
+                plusPoison2();
+            }
+            if(velocityY>10)
+            {
+                minusPoison2();
+            }
+            return false;
+        }
+    }
+
+
+    //------dalsi------
     public void buttonRand(View button) {
         double nah;
         Integer max;
@@ -257,21 +387,6 @@ public class MagicActivity extends Activity {
 
     }
 
-    DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
-        @Override
-        public void onClick(DialogInterface dialog, int which) {
-            switch (which) {
-                case DialogInterface.BUTTON_POSITIVE:
-                    NulujHru();
-                    break;
-
-                case DialogInterface.BUTTON_NEGATIVE:
-                    // No button clicked
-                    break;
-            }
-        }
-    };
-
     private void NulujHru() {
         zivotyHrac1 = 20;
         zivotyHrac2 = 20;
@@ -290,15 +405,15 @@ public class MagicActivity extends Activity {
     private void LightOnOff() {
         if (lightOn == false) {
             ZapniSvetlo();
-            lightOn=true;
+            lightOn = true;
         } else {
             VypniSvetlo();
-            lightOn=false;
+            lightOn = false;
 
         }
     }
-    private void ZapniSvetlo()
-    {
+
+    private void ZapniSvetlo() {
         getWindow().setFlags(
                 WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON,
                 WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
@@ -307,8 +422,8 @@ public class MagicActivity extends Activity {
                         R.color.zarovkaon));
 
     }
-    private void VypniSvetlo()
-    {
+
+    private void VypniSvetlo() {
         getWindow().setFlags(0,
                 WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         ((View) findViewById(R.id.zarovka1))
@@ -378,7 +493,9 @@ public class MagicActivity extends Activity {
         deltaPoisony1 = 0;
         deltaPoisony2 = 0;
     }
-    public void NulujKostku() {
-        ((EditText) findViewById(R.id.random_vysledek)).setText("");    }
 
+    public void NulujKostku() {
+        ((EditText) findViewById(R.id.random_vysledek)).setText("");
     }
+
+}

@@ -35,7 +35,7 @@
             <!-- zivoty 1 cisla -->
 
             <LinearLayout
-                android:id="@+id/zivoty_cisla1"
+                android:id="@+id/dotyk_zivot1"
                 android:layout_width="100dp"
                 android:layout_height="120dp"
                 android:orientation="vertical">
@@ -71,7 +71,7 @@
                 android:id="@+id/zivoty_buttony1"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
-                android:layout_toRightOf="@id/zivoty_cisla1"
+                android:layout_toRightOf="@id/dotyk_zivot1"
                 android:gravity="center_horizontal"
                 android:orientation="vertical">
 
@@ -97,7 +97,7 @@
             <!-- poison countery cisla -->
 
             <LinearLayout
-                android:id="@+id/poison_cisla1"
+                android:id="@+id/dotyk_poison1"
                 android:layout_width="100dp"
                 android:layout_height="120dp"
                 android:layout_weight="1"
@@ -138,8 +138,8 @@
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:orientation="vertical"
-                android:layout_toRightOf="@id/zivoty_cisla1"
-                android:layout_below="@id/zivoty_cisla1">
+                android:layout_toRightOf="@id/dotyk_zivot1"
+                android:layout_below="@id/dotyk_zivot1">
 
                 <Button
                     android:layout_width="70dp"
@@ -195,7 +195,7 @@
             <!-- zivoty 2 cisla-->
 
             <LinearLayout
-                android:id="@+id/zivoty_cisla2"
+                android:id="@+id/dotyk_zivot2"
                 android:layout_width="100dp"
                 android:layout_height="120dp"
                 android:orientation="vertical">
@@ -231,7 +231,7 @@
                 android:id="@+id/zivoty_buttony2"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
-                android:layout_toRightOf="@id/zivoty_cisla2"
+                android:layout_toRightOf="@id/dotyk_zivot2"
                 android:gravity="center_horizontal"
                 android:orientation="vertical">
 
@@ -257,7 +257,7 @@
             <!-- poison countery 2 cisla-->
 
             <LinearLayout
-                android:id="@+id/poison_cisla2"
+                android:id="@+id/dotyk_poison2"
                 android:layout_width="100dp"
                 android:layout_height="120dp"
                 android:layout_weight="1"
@@ -298,8 +298,8 @@
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:orientation="vertical"
-                android:layout_toRightOf="@id/zivoty_cisla2"
-                android:layout_below="@id/zivoty_cisla2">
+                android:layout_toRightOf="@id/dotyk_zivot2"
+                android:layout_below="@id/dotyk_zivot2">
 
                 <Button
                     android:layout_width="70dp"
