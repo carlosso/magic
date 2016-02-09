@@ -8,6 +8,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -31,6 +32,10 @@ public class MagicActivity extends Activity {
     Boolean lightOn;
     MojeTimerTask ulohaTimeru;
     private static final String DEBUG_TAG = "carlosso";
+    Boolean isButtonLife1LongPressed=false;
+    Boolean isButtonLife2LongPressed=false;
+    Boolean isButtonPoison1LongPressed=false;
+    Boolean isButtonPoison2LongPressed=false;
     /**
      * Called when the activity is first created.
      */
@@ -496,6 +501,55 @@ public class MagicActivity extends Activity {
 
     public void NulujKostku() {
         ((EditText) findViewById(R.id.random_vysledek)).setText("");
+    }
+
+
+    public void buttonNaPozadi(View button) {
+        new NaPozadi().execute();
+    }
+
+    class NaPozadi extends AsyncTask<Void, Integer, String>
+    {
+        @Override
+        protected void onPreExecute ()
+        {
+            Log.d("NaPozadi","On pre Exceute......");
+        }
+        @Override
+        protected String doInBackground(Void... nic) {
+            String s="Vtart";
+            for(Integer i=0; i<10; i++){
+                {
+                    if(!isButtonLife1LongPressed) break;
+                    //Zvys();
+                    zivotyHrac1++;
+                    try {
+                        Thread.sleep(100);
+                    }
+                    catch(InterruptedException e)
+                    {
+
+                    }
+                    Log.d(DEBUG_TAG, "i: ");
+                }
+                publishProgress(i);
+            }
+            Log.d("NaPozadi"," doIn");
+            return s;
+        }
+        @Override
+        protected void onProgressUpdate(Integer...a){
+            super.onProgressUpdate(a);
+            Log.d("NaPozadi","Progress update ... ");
+        }
+
+        @Override
+        protected void onPostExecute(String vysledek)
+        {
+
+            Log.d("NaPozadi"," Post");
+        }
+
     }
 
 }
