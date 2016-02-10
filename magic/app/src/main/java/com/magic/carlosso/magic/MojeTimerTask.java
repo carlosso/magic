@@ -22,8 +22,10 @@ public class MojeTimerTask extends TimerTask {
 
         if ((aktCas - casPoslednihoZapisuPromenne) > Constants.SMAZAT_ZA_MS) {
             // ---smaze delty
-            nadrA.NulujDelty();
-            NulujTexty();
+            if(!nadrA.isButtonPlusLife1LongPressed) {
+                nadrA.NulujDelty();
+                NulujTexty();
+            }
         }
         if ((aktCas - casPoslednihoZapisuKostky) > Constants.SMAZAT_KOSTKU_ZA_MS) {
             // ---smaze delty

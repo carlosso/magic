@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.EditText;
@@ -32,10 +33,14 @@ public class MagicActivity extends Activity {
     Boolean lightOn;
     MojeTimerTask ulohaTimeru;
     private static final String DEBUG_TAG = "carlosso";
-    Boolean isButtonLife1LongPressed=false;
-    Boolean isButtonLife2LongPressed=false;
-    Boolean isButtonPoison1LongPressed=false;
-    Boolean isButtonPoison2LongPressed=false;
+    Boolean isButtonPlusLife1LongPressed =false;
+    Boolean isButtonPlusLife2LongPressed =false;
+    Boolean isButtonPlusPoison1LongPressed =false;
+    Boolean isButtonPlusPoison2LongPressed =false;
+    Boolean isButtonMinusLife1LongPressed =false;
+    Boolean isButtonMinusLife2LongPressed =false;
+    Boolean isButtonMinusPoison1LongPressed =false;
+    Boolean isButtonMinusPoison2LongPressed =false;
     /**
      * Called when the activity is first created.
      */
@@ -102,7 +107,7 @@ public class MagicActivity extends Activity {
         casovac.schedule(ulohaTimeru, Constants.SMAZAT_KOSTKU_ZA_MS,
                 Constants.SMAZAT_KOSTKU_ZA_MS);
 
-        //----dotyky-----
+        //----gesta-----
         LinearLayout zivoty1;
         zivoty1 = (LinearLayout) findViewById(R.id.dotyk_zivot1);
         final GestureDetector mujGestureDetectorZivoty1 = new GestureDetector(new MyGestureListenerZivoty1());
@@ -147,6 +152,103 @@ public class MagicActivity extends Activity {
             }
         });
 
+        //--dlouhy stisk----
+        
+        //-------------------------------------------------------------------------
+        Button buttonPlusZivoty1;
+        buttonPlusZivoty1=(Button) findViewById(R.id.id_buttonPlusZivoty1);
+        buttonPlusZivoty1.setOnLongClickListener(new View.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                isButtonPlusLife1LongPressed = true;
+                buttonNaPozadi(v);
+                return false;
+            }
+        });
+        buttonPlusZivoty1.setOnTouchListener(buttonTouchListener);
+
+        //-------------------------------------------------------------------------
+        Button buttonPlusZivoty2;
+        buttonPlusZivoty2=(Button) findViewById(R.id.id_buttonPlusZivoty2);
+        buttonPlusZivoty2.setOnLongClickListener(new View.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                isButtonPlusLife2LongPressed = true;
+                buttonNaPozadi(v);
+                return false;
+            }
+        });
+        buttonPlusZivoty2.setOnTouchListener(buttonTouchListener);
+
+        //-------------------------------------------------------------------------
+        Button buttonMinusZivoty1;
+        buttonMinusZivoty1=(Button) findViewById(R.id.id_buttonMinusZivoty1);
+        buttonMinusZivoty1.setOnLongClickListener(new View.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                isButtonMinusLife1LongPressed = true;
+                buttonNaPozadi(v);
+                return false;
+            }
+        });
+        buttonMinusZivoty1.setOnTouchListener(buttonTouchListener);
+
+        //-------------------------------------------------------------------------
+        Button buttonMinusZivoty2;
+        buttonMinusZivoty2=(Button) findViewById(R.id.id_buttonMinusZivoty2);
+        buttonMinusZivoty2.setOnLongClickListener(new View.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                isButtonMinusLife2LongPressed = true;
+                buttonNaPozadi(v);
+                return false;
+            }
+        });
+        buttonMinusZivoty2.setOnTouchListener(buttonTouchListener);
+
+        //-------------------------------------------------------------------------
+        Button buttonPlusPoison1;
+        buttonPlusPoison1=(Button) findViewById(R.id.id_buttonPlusPoison1);
+        buttonPlusPoison1.setOnLongClickListener(new View.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                isButtonPlusLife1LongPressed = true;
+                buttonNaPozadi(v);
+                return false;
+            }
+        });
+        buttonPlusPoison1.setOnTouchListener(buttonTouchListener);
+
+        //-------------------------------------------------------------------------
+        Button buttonPlusPoison2;
+        buttonPlusPoison2=(Button) findViewById(R.id.id_buttonPlusPoison2);
+        buttonPlusPoison2.setOnLongClickListener(new View.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                isButtonPlusLife2LongPressed = true;
+                buttonNaPozadi(v);
+                return false;
+            }
+        });
+        buttonPlusPoison2.setOnTouchListener(buttonTouchListener);
+
+        //-------------------------------------------------------------------------
+        Button buttonMinusPoison1;
+        buttonMinusPoison1=(Button) findViewById(R.id.id_buttonMinusPoison1);
+        buttonMinusPoison1.setOnLongClickListener(new View.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                isButtonMinusLife1LongPressed = true;
+                buttonNaPozadi(v);
+                return false;
+            }
+        });
+        buttonMinusPoison1.setOnTouchListener(buttonTouchListener);
+
+        //-------------------------------------------------------------------------
+        Button buttonMinusPoison2;
+        buttonMinusPoison2=(Button) findViewById(R.id.id_buttonMinusPoison2);
+        buttonMinusPoison2.setOnLongClickListener(new View.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                isButtonMinusLife2LongPressed = true;
+                buttonNaPozadi(v);
+                return false;
+            }
+        });
+        buttonMinusPoison2.setOnTouchListener(buttonTouchListener);
     }
 
     @Override
@@ -192,6 +294,7 @@ public class MagicActivity extends Activity {
     }
 
     public void buttonPlusLife1(View button) {
+        Log.d(DEBUG_TAG, "PlusLife1");
         plusLife1();
     }
 
@@ -503,26 +606,153 @@ public class MagicActivity extends Activity {
         ((EditText) findViewById(R.id.random_vysledek)).setText("");
     }
 
+    private View.OnTouchListener buttonTouchListener = new View.OnTouchListener() {
+        @Override
+        public boolean onTouch(View pView, MotionEvent pEvent) {
+            pView.onTouchEvent(pEvent);
+            if (pEvent.getAction() == MotionEvent.ACTION_UP) {
+                int idButtonu=pView.getId();
+                switch(idButtonu){
+                    case R.id.id_buttonPlusZivoty1:
+                        if (isButtonPlusLife1LongPressed) {
+                            isButtonPlusLife1LongPressed = false;
+                        }
+                        break;
+                    case R.id.id_buttonPlusZivoty2:
+                        if (isButtonPlusLife2LongPressed) {
+                            isButtonPlusLife2LongPressed = false;
+                        }
+                        break;
+                    case R.id.id_buttonMinusZivoty1:
+                        if (isButtonMinusLife1LongPressed) {
+                            isButtonMinusLife1LongPressed = false;
+                        }
+                        break;
+                    case R.id.id_buttonMinusZivoty2:
+                        if (isButtonMinusLife2LongPressed) {
+                            isButtonMinusLife2LongPressed = false;
+                        }
+                        break;
+                    case R.id.id_buttonPlusPoison1:
+                        if (isButtonPlusLife1LongPressed) {
+                            isButtonPlusLife1LongPressed = false;
+                        }
+                        break;
+                    case R.id.id_buttonPlusPoison2:
+                        if (isButtonPlusLife2LongPressed) {
+                            isButtonPlusLife2LongPressed = false;
+                        }
+                        break;
+                    case R.id.id_buttonMinusPoison1:
+                        if (isButtonMinusLife1LongPressed) {
+                            isButtonMinusLife1LongPressed = false;
+                        }
+                        break;
+                    case R.id.id_buttonMinusPoison2:
+                        if (isButtonMinusLife2LongPressed) {
+                            isButtonMinusLife2LongPressed = false;
+                        }
+                        break;
 
-    public void buttonNaPozadi(View button) {
-        new NaPozadi().execute();
+                }
+            }
+            return true;
+        }
+    };
+
+
+    public void buttonNaPozadi(View v) {
+        new NaPozadi(v).execute();
     }
 
-    class NaPozadi extends AsyncTask<Void, Integer, String>
+    class NaPozadi extends AsyncTask<Void, Integer, Void>
     {
+        int idButton;
+        public NaPozadi(View v)
+        {
+            super();
+            this.idButton=v.getId();
+        }
         @Override
         protected void onPreExecute ()
         {
             Log.d("NaPozadi","On pre Exceute......");
         }
         @Override
-        protected String doInBackground(Void... nic) {
-            String s="Vtart";
-            for(Integer i=0; i<10; i++){
+        protected Void doInBackground(Void... nic) {
+            Boolean breaknuto=false;
+            for(Integer i=0; i<100; i++){
                 {
-                    if(!isButtonLife1LongPressed) break;
-                    //Zvys();
-                    zivotyHrac1++;
+                    switch(idButton) {
+                        case R.id.id_buttonPlusZivoty1:
+                            if(!isButtonPlusLife1LongPressed) {
+                                breaknuto=true;
+                                break;
+                            }
+                            zivotyHrac1++;
+                            deltaZivoty1++;
+                            break;
+                        case R.id.id_buttonPlusZivoty2:
+                            if(!isButtonPlusLife2LongPressed) {
+                                breaknuto=true;
+                                break;
+                            }
+                            zivotyHrac2++;
+                            deltaZivoty2++;
+                            break;
+                        case R.id.id_buttonMinusZivoty1:
+                            if(!isButtonMinusLife1LongPressed) {
+                                breaknuto=true;
+                                break;
+                            }
+                            zivotyHrac1--;
+                            deltaZivoty1--;
+                            break;
+                        case R.id.id_buttonMinusZivoty2:
+                            if(!isButtonMinusLife2LongPressed) {
+                                breaknuto=true;
+                                break;
+                            }
+                            zivotyHrac2--;
+                            deltaZivoty2--;
+                            break;
+
+                        case R.id.id_buttonPlusPoison1:
+                            if(!isButtonPlusLife1LongPressed) {
+                                breaknuto=true;
+                                break;
+                            }
+                            poisonyHrac1++;
+                            deltaPoisony1++;
+                            break;
+                        case R.id.id_buttonPlusPoison2:
+                            if(!isButtonPlusLife2LongPressed) {
+                                breaknuto=true;
+                                break;
+                            }
+                            poisonyHrac2++;
+                            deltaPoisony2++;
+                            break;
+                        case R.id.id_buttonMinusPoison1:
+                            if(!isButtonMinusLife1LongPressed) {
+                                breaknuto=true;
+                                break;
+                            }
+                            poisonyHrac1--;
+                            deltaPoisony1--;
+                            break;
+                        case R.id.id_buttonMinusPoison2:
+                            if(!isButtonMinusLife2LongPressed) {
+                                breaknuto=true;
+                                break;
+                            }
+                            poisonyHrac2--;
+                            deltaPoisony2--;
+                            break;
+
+
+                    }
+                    if(breaknuto) break;
                     try {
                         Thread.sleep(100);
                     }
@@ -530,23 +760,26 @@ public class MagicActivity extends Activity {
                     {
 
                     }
-                    Log.d(DEBUG_TAG, "i: ");
                 }
+
                 publishProgress(i);
             }
             Log.d("NaPozadi"," doIn");
-            return s;
+            return null;
         }
         @Override
         protected void onProgressUpdate(Integer...a){
             super.onProgressUpdate(a);
+            VykresliPole();
+            VykresliDelty();
             Log.d("NaPozadi","Progress update ... ");
         }
 
         @Override
-        protected void onPostExecute(String vysledek)
+        protected void onPostExecute(Void nic)
         {
-
+            VykresliPole();
+            VykresliDelty();
             Log.d("NaPozadi"," Post");
         }
 

@@ -79,7 +79,8 @@
                 android:onClick="buttonPlusLife1"
                 android:paddingBottom="5dp"
                 android:text="@string/plus"
-                android:textSize="40sp" />
+                android:textSize="40sp"
+                android:id="@+id/id_buttonPlusZivoty1" />
 
             <Button
                 android:layout_width="70dp"
@@ -88,7 +89,8 @@
                 android:onClick="buttonMinusLife1"
                 android:paddingBottom="8dp"
                 android:text="@string/minus"
-                android:textSize="40sp" />
+                android:textSize="40sp"
+                android:id="@+id/id_buttonMinusZivoty1" />
         </LinearLayout>
 
         <!-- poison contery cisla -->
@@ -141,7 +143,8 @@
                 android:onClick="buttonPlusPoison1"
                 android:paddingBottom="5dp"
                 android:text="@string/plus"
-                android:textSize="40sp" />
+                android:textSize="40sp"
+                android:id="@+id/id_buttonPlusPoison1" />
 
             <Button
                 android:layout_width="70dp"
@@ -150,7 +153,8 @@
                 android:onClick="buttonMinusPoison1"
                 android:paddingBottom="8dp"
                 android:text="@string/minus"
-                android:textSize="40sp" />
+                android:textSize="40sp"
+                android:id="@+id/id_buttonMinusPoison1" />
         </LinearLayout>
     </LinearLayout>
 
@@ -226,7 +230,8 @@
                 android:onClick="buttonPlusLife2"
                 android:paddingBottom="5dp"
                 android:text="@string/plus"
-                android:textSize="40sp" />
+                android:textSize="40sp"
+                android:id="@+id/id_buttonPlusZivoty2" />
 
             <Button
                 android:layout_width="70dp"
@@ -235,7 +240,8 @@
                 android:onClick="buttonMinusLife2"
                 android:paddingBottom="8dp"
                 android:text="@string/minus"
-                android:textSize="40sp" />
+                android:textSize="40sp"
+                android:id="@+id/id_buttonMinusZivoty2" />
         </LinearLayout>
 
         <!-- poison -->
@@ -288,7 +294,8 @@
                 android:onClick="buttonPlusPoison2"
                 android:paddingBottom="5dp"
                 android:text="@string/plus"
-                android:textSize="40sp" />
+                android:textSize="40sp"
+                android:id="@+id/id_buttonPlusPoison2" />
 
             <Button
                 android:layout_width="70dp"
@@ -297,7 +304,8 @@
                 android:onClick="buttonMinusPoison2"
                 android:paddingBottom="8dp"
                 android:text="@string/minus"
-                android:textSize="40sp" />
+                android:textSize="40sp"
+                android:id="@+id/id_buttonMinusPoison2" />
         </LinearLayout>
     </LinearLayout>
 
