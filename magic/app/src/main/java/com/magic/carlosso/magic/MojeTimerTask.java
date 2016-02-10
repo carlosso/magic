@@ -22,7 +22,16 @@ public class MojeTimerTask extends TimerTask {
 
         if ((aktCas - casPoslednihoZapisuPromenne) > Constants.SMAZAT_ZA_MS) {
             // ---smaze delty
-            if(!nadrA.isButtonPlusLife1LongPressed) {
+            if(!(
+                    nadrA.isButtonPlusLife1LongPressed ||
+                            nadrA.isButtonPlusLife2LongPressed ||
+                            nadrA.isButtonMinusLife1LongPressed ||
+                            nadrA.isButtonMinusLife2LongPressed ||
+                            nadrA.isButtonPlusPoison1LongPressed ||
+                            nadrA.isButtonPlusPoison2LongPressed ||
+                            nadrA.isButtonMinusPoison1LongPressed ||
+                            nadrA.isButtonMinusPoison2LongPressed
+            )) {
                 nadrA.NulujDelty();
                 NulujTexty();
             }
